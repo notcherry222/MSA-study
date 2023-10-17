@@ -1,0 +1,44 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: apigateway-server
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            message: Global Filter Default Message Test
+            pre: true
+            post: true
+
+      routes:
+        - id: first-service
+          uri: lb://FIRST-SERVICE
+          predicates:
+            - Path=/first-service/**
+          filters:
+#            - AddRequestHeader=firstqh,firstqhv
+#            - AddResponseHeader=firstrh,firstrhv
+            - CustomFilter1
+            - LogFilter
+
+        - id: second-service
+          uri: lb://SECOND-SERVICE # 로드밸런서 이용
+          predicates:
+            - Path=/second-service/**
+          filters:
+#            - AddRequestHeader=secondqh,secondqhv
+#            - AddResponseHeader=secondrh,secondrhv
+            - CustomFilter2
+            - LogFilter
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} #포트 번호 충돌 예방. 식별된 인스턴스 등록 가능
+  client:
+    register-with-eureka: true #유레카 서버에 등록하기
+    fetch-registry: true # 유레카 서버에서 서버 상태 지속적 감시
+    service-url:
+      defaultZone: http://localhost:8761/eureka
