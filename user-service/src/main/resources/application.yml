@@ -5,9 +5,11 @@ spring:
     active: db
   datasource:
     url: ${url}
-    name: ${username}
+    username: ${username_}
     password: ${password}
     driver-class-name: ${driver-class-name}
+
+
   jpa:
     hibernate:
       ddl-auto: update
