@@ -34,6 +34,11 @@ spring:
             - CustomFilter2
             - LogFilter
 
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/** #필터는 글로벌 필터로 충분
+
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} #포트 번호 충돌 예방. 식별된 인스턴스 등록 가능
