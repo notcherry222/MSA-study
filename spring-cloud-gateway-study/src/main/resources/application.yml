@@ -39,6 +39,16 @@ spring:
           predicates:
             - Path=/user-service/** #필터는 글로벌 필터로 충분
 
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+
+        - id: item-service
+          uri: lb://ITEM-SERVICE
+          predicates:
+            - Path=/item-service/**
+
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} #포트 번호 충돌 예방. 식별된 인스턴스 등록 가능

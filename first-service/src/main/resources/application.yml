@@ -4,7 +4,9 @@ server:
 spring:
   application:
     name: first-service
-
+  jpa:
+    hibernate:
+      ddl-auto: update
 eureka:
   instance:
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
@@ -13,3 +15,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+#test:
+#  value: test message! -> yml 파일 새로 생성

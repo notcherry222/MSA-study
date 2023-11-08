@@ -23,4 +23,9 @@ public class OrderController {
         orderService.CreateOrder(requestCreateDto);
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @GetMapping("orders/{userId}")
+    public ResponseEntity<?> getOrderListByUserId(@PathVariable String userId) {
+        return new ResponseEntity;
+    }
 }

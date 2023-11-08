@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: test  #컴마로 얌파일 더 추가할 수 있음

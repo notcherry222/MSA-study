@@ -1,7 +1,10 @@
 package com.playdata.domain.dto.response;
 
 import com.playdata.domain.User;
+import jakarta.persistence.criteria.Order;
 import lombok.*;
+
+import java.util.List;
 
 
 @Getter @Setter @Builder @ToString
@@ -11,6 +14,7 @@ public class ResponseFindUserDto {
     private String email;
     private String name;
     private String userId;
+    private List<Order> orderList;
 
     public ResponseFindUserDto(User user) {
         this.id = user.getId();

@@ -23,6 +23,8 @@ public class FirstServiceController {
     //0으로 포트 번호 랜덤 할당한 후 포트번호 확인하는 컨트롤러
     @GetMapping("port-check")
     public String portCheck() {
-        return environment.getProperty("local.server.port");
+        return environment.getProperty("local.server.port")
+                + "/" + environment.getProperty("test.value")
+                + "/" + environment.getProperty("spring.application.name");
     }
 }
