@@ -15,6 +15,9 @@ public class ItemService {
     private final Producer producer;
     private final ObjectMapper objectMapper;
 
+    public void createItem(RequestCreateItemDto dto) {
+        itemRepository.save(dto.toEntity());
+    }
     public void publishTestMessage(String message) { producer.sendTestMessage(message);}
 
     public void publishCreateItemMessage(RequestCreateItemDto dto)

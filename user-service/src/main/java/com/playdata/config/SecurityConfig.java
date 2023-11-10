@@ -29,5 +29,4 @@ public class SecurityConfig {
     }
 
     // 암호화 비밀번호 저장
-    public BCryptPasswordEncoder bCryptPasswordEncoder
 }

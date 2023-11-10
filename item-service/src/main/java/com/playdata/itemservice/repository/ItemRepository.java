@@ -1,7 +1,7 @@
 package com.playdata.itemservice.repository;
 
-import org.springframework.stereotype.Repository;
+import com.playdata.itemservice.domain.Item;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class ItemRepository {
+public interface ItemRepository extends JpaRepository<Item, Long> {
 }
