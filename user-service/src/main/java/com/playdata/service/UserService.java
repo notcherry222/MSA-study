@@ -6,8 +6,11 @@ import com.playdata.domain.dto.response.ResponseFindUserDto;
 import com.playdata.feignclient.OrderFeignClient;
 import com.playdata.repository.UserRepository;
 import jakarta.persistence.criteria.Order;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 @Service
@@ -16,6 +19,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final OrderFeignClient orderFeignClient;
+
     public void createUser(RequestCreateUserDto userDto) {
         //dto를 entity로 변경
         User user = userDto.toEntity();
