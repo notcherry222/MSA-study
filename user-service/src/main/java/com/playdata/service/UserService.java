@@ -3,6 +3,7 @@ package com.playdata.service;
 import com.playdata.domain.User;
 import com.playdata.domain.dto.request.RequestCreateUserDto;
 import com.playdata.domain.dto.response.ResponseFindUserDto;
+import com.playdata.exception.UserNotFoundException;
 import com.playdata.feignclient.OrderFeignClient;
 import com.playdata.repository.UserRepository;
 import jakarta.persistence.criteria.Order;
@@ -26,8 +27,17 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public List<User> findAllUser() {
+        return userRepository.findAll();
+    }
+
     public ResponseFindUserDto findUserByUuid(String uuid) {
-        return new ResponseFindUserDto(userRepository.findUserByUuid(uuid));
+        User user = userRepository.findUserByUuid(uuid);
+
+        if(user == null) {
+            throw new UserNotFoundException("해당 유저는 존재하지 않습니다.");
+        }
+        return new ResponseFindUserDto(user);
     }
 
     public ResponseFindUserDto findUserOrderList(String userId) {

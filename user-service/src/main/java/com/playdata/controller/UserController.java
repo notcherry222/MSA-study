@@ -7,6 +7,8 @@ import com.playdata.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.PathParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +32,12 @@ public class UserController {
     @PostMapping("users")
     public ResponseEntity<String> createUser(@Valid @RequestBody RequestCreateUserDto userDto) {
         userService.createUser(userDto);
-        return ResponseEntity.ok( "join complete");
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @GetMapping("users/all")
+    public ResponseEntity<?> findAllUser() {
+        return ResponseEntity.ok(userService.findAllUser());
     }
 
     //가입된 계정을 uuid기반으로 찾아오기
